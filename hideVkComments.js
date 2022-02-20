@@ -3,7 +3,9 @@ const displayHideProperty = 'none';
 let lastSuccessfulRunAt = getCurrentTime();
 
 function hideComments(){
-    idle();
+    if(!canRun()){
+        return;
+    }
 
     const elementsToHide = getElementsByQry('div.replies, div.post_replies_header');
     if (elementsToHide.length == 0){
@@ -14,11 +16,13 @@ function hideComments(){
     lastSuccessfulRunAt = getCurrentTime();
 }
 
-function idle(){
+function canRun(){
     const diff = getCurrentTime() - lastSuccessfulRunAt;
     if (diff <= secondsToIdle){
-        return;
+        return false;
     }
+
+    return true;
 }
 
 function getCurrentTime(){
