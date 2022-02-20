@@ -39,7 +39,7 @@ function getElementsByQry(className){
         .filter(el => el.style.display != displayHideProperty);
 }
 
-window.addEventListener("scroll", function(event) {
+window.addEventListener("scroll", function(_) {
     hideComments();
 });
 
